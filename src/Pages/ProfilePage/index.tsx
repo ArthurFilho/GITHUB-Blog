@@ -1,5 +1,6 @@
 import { Header } from "../../components/Header";
-import { AllContainers, ContainerAvatar, ContainerProfile, TitleAndLink } from "./styles";
+import { SearchForm } from "../../components/SearchForm";
+import { AllContainers, ContainerAvatar, ContainerProfile, Description, TitleAndLink } from "./styles";
 
 export function ProfilePage(){
     return(
@@ -15,11 +16,13 @@ export function ProfilePage(){
             <h3>Cameron Williamson</h3>
             <a href="#">github</a>
             </TitleAndLink>
-            <p>Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat pulvinar vel mass.</p>
-            <p> DASKDJKADJKASDJKASJKDASJKDJKASDJKSDJKASDJKASK</p>
+            <Description>Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat pulvinar vel mass.</Description>
+            <Description> DASKDJKADJKASDJKASJKDASJKDJKASDJKSDJKASDJKASK</Description>
         </div>
         </ContainerProfile>
-        
+
+           <SearchForm/>
+
         </AllContainers>
         </>
     )

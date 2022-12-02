@@ -6,7 +6,7 @@ export const ContainerProfile = styled.div`
     justify-content: center;
     color: white;
     width: 800px;
-    height: 150px;
+    height: 175px;
     position: absolute;
     gap: 10px;
     background-color: ${props => props.theme["blue-950"]};
@@ -32,4 +32,9 @@ export const TitleAndLink = styled.div`
     justify-content: space-between;
     margin-right: 20px;
     margin-bottom: 10px;
+`
+
+export const Description = styled.p`
+    opacity: 0.8;
+    margin-bottom: 15px;
 `
