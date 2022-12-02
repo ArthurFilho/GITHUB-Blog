@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: ${props => props.theme['blue-1100']};
+    overflow: hidden;
     }
 :focus {
       outline: 0;

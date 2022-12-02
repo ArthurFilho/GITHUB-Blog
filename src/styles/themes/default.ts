@@ -6,7 +6,7 @@ export const DefaultTheme = {
     'blue-700': '#3A536B',
     'blue-800': '#1C2F41',
     'blue-900': '#112131',
-    'blue-1000': '#0B1B2B',
+    'blue-950': '#0B1B2B',
     'blue-1100': '#071422',
     'blue-1200': '#040F1A',
     
