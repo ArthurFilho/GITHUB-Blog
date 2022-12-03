@@ -38,3 +38,26 @@ export const Description = styled.p`
     opacity: 0.8;
     margin-bottom: 15px;
 `
+
+export const ContainerCards = styled.div`
+    display: flex;
+    margin-top: 200px;
+    align-items: center;
+    justify-content: space-evenly;
+`
+
+export const Cards = styled.div`
+    display: flex;
+    width: 400px;
+    height: 200px;;
+    padding: 10px;
+    background-color: ${props => props.theme["blue-900"]};
+    flex-direction: column;
+    color: ${props => props.theme.white};
+`
+
+export const ContainerText = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+`
