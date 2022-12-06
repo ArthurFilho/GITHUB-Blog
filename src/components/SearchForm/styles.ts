@@ -5,7 +5,14 @@ export const SearchFormContainer = styled.form`
   position: absolute;
   margin-top: 300px;
   width: 75%;
+  color: ${props => props.theme.white};
+  flex-direction: column;
+  gap: 10px;
 
+  div{
+    display: flex;
+    justify-content: space-between;
+  }
   input {
     width: 100%;
     flex: 1;

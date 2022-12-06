@@ -44,6 +44,7 @@ export const ContainerCards = styled.div`
     margin-top: 200px;
     align-items: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 `
 
 export const Cards = styled.div`
@@ -51,6 +52,7 @@ export const Cards = styled.div`
     width: 400px;
     height: 200px;;
     padding: 10px;
+    margin-bottom: 50px;
     background-color: ${props => props.theme["blue-900"]};
     flex-direction: column;
     color: ${props => props.theme.white};
