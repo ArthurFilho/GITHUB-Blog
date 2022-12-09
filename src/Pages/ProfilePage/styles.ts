@@ -13,12 +13,16 @@ export const ContainerProfile = styled.div`
 `
 
 export const ContainerAvatar = styled.div`
-    width: 30%;
+    width: 25%;
     height: 125px;
     display: flex;
     background-color: white;
-    border-radius: 10px;
     margin-left: 10px;
+    border-radius: 10px;
+    justify-content: center;
+    img{
+        border-radius: 10px;
+    }
 `
 
 export const AllContainers = styled.div`

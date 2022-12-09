@@ -1,26 +1,49 @@
+import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { SearchForm } from "../../components/SearchForm";
+import { api } from "../../lib/axios";
 import { AllContainers, Cards, ContainerAvatar, ContainerCards, ContainerProfile, ContainerText, Description, TitleAndLink } from "./styles";
 
+  interface InformationInterface {
+    name: string;
+
+}
+
 export function ProfilePage(){
+
+    const [information, setInformation] = useState<any>({})
+
+    async function informationLoad() {
+        const response = await api.get('/users/arthurfilho')
+
+        setInformation(response.data)
+    }
+
+    useEffect(()=>{
+        informationLoad()
+    }, [])
+
     return(
         <>
         <Header />
-        <AllContainers>
         
+        <AllContainers>
+       
         <ContainerProfile>
 
-        <ContainerAvatar></ContainerAvatar>
+        <ContainerAvatar>
+            <img src={information.avatar_url} />
+        </ContainerAvatar>
         <div>
             <TitleAndLink>
-            <h3>Cameron Williamson</h3>
+            <h3>{information.name}</h3>
             <a href="#">github</a>
             </TitleAndLink>
-            <Description>Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat pulvinar vel mass.</Description>
-            <Description> DASKDJKADJKASDJKASJKDASJKDJKASDJKSDJKASDJKASK</Description>
+            <Description>{information.bio}</Description>
+            <Description><a href={information.blog}>Linkedin</a> </Description>
         </div>
         </ContainerProfile>
-
+        
            <SearchForm/>
         </AllContainers>
 
