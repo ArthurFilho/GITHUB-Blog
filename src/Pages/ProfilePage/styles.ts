@@ -16,7 +16,6 @@ export const ContainerAvatar = styled.div`
     width: 25%;
     height: 125px;
     display: flex;
-    background-color: white;
     margin-left: 10px;
     border-radius: 10px;
     justify-content: center;
@@ -36,11 +35,16 @@ export const TitleAndLink = styled.div`
     justify-content: space-between;
     margin-right: 20px;
     margin-bottom: 10px;
+    a:link, a:visited, a:active {
+	text-decoration: none;
+    color: #3294F8;
+	}
 `
 
 export const Description = styled.p`
     opacity: 0.8;
     margin-bottom: 15px;
+    display: flex;
 `
 
 export const ContainerCards = styled.div`
@@ -66,4 +70,18 @@ export const ContainerText = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+`
+
+export const ContainerLinks = styled.div`
+    display: flex;
+    gap: 10px;
+`
+
+export const Links = styled.div`
+    text-decoration: none;
+    color: ${props => props.theme["gray-300"]};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 `

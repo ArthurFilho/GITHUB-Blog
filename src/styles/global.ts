@@ -18,7 +18,4 @@ body {
 body, input-security, textarea, button {
     font-family: 'Nunito', sans-serif;
 }
-a {
-    text-decoration: none;
-}
 `

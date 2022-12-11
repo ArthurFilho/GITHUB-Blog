@@ -2,11 +2,16 @@ import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { SearchForm } from "../../components/SearchForm";
 import { api } from "../../lib/axios";
-import { AllContainers, Cards, ContainerAvatar, ContainerCards, ContainerProfile, ContainerText, Description, TitleAndLink } from "./styles";
+import { AllContainers, Cards, ContainerAvatar, ContainerCards, ContainerLinks, ContainerProfile, ContainerText, Description, Links, TitleAndLink } from "./styles";
+import click from "../../assets/ProfilePage/click.svg"
+import follow from "../../assets/ProfilePage/follow.svg"
+import github from "../../assets/ProfilePage/github.svg"
 
   interface InformationInterface {
     name: string;
-
+    bio: string
+    avatar_url: string
+    blog: string
 }
 
 export function ProfilePage(){
@@ -37,10 +42,10 @@ export function ProfilePage(){
         <div>
             <TitleAndLink>
             <h3>{information.name}</h3>
-            <a href="#">github</a>
+            <a href={information.html_url}>github <img src={click} /></a>
             </TitleAndLink>
             <Description>{information.bio}</Description>
-            <Description><a href={information.blog}>Linkedin</a> </Description>
+            <ContainerLinks> {information.login == null ? '' : <Links> <img src={github} /> {information.login}</Links>} {information.company == null ? '' : <Links>{information.company}</Links>} {information.follow <= 0 ? '' : <Links> <img src={follow} /> {information.followers} seguidores</Links>} </ContainerLinks>
         </div>
         </ContainerProfile>
         
