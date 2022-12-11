@@ -58,18 +58,30 @@ export const ContainerCards = styled.div`
 export const Cards = styled.div`
     display: flex;
     width: 400px;
-    height: 200px;;
-    padding: 10px;
+    height: 180px;;
+    padding: 20px;
     margin-bottom: 50px;
     background-color: ${props => props.theme["blue-900"]};
     flex-direction: column;
+    border-radius: 10px;
     color: ${props => props.theme.white};
+    p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.7;
+    }
 `
 
 export const ContainerText = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    a , a:link, a:visited, a:active, a:hover {
+	text-decoration: none;
+    opacity: 0.5;
+    font-size: 14px;
+	}
 `
 
 export const ContainerLinks = styled.div`
