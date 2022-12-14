@@ -6,6 +6,7 @@ import { AllContainers, Cards, ContainerAvatar, ContainerCards, ContainerLinks, 
 import click from "../../assets/ProfilePage/click.svg"
 import follow from "../../assets/ProfilePage/follow.svg"
 import github from "../../assets/ProfilePage/github.svg"
+import { dataFormatter } from "../../utils/formatter";
 
   interface InformationInterface {
     name: string;
@@ -22,6 +23,7 @@ export function ProfilePage(){
 
     const [information, setInformation] = useState({} as InformationInterface)
 
+    const [IssuesInformation, setIssuesInformation] = useState([] as any)
 
     async function informationLoad() {
         const response = await api.get('/users/arthurfilho')
@@ -29,9 +31,16 @@ export function ProfilePage(){
         setInformation(response.data)
     }
 
+    async function IssuesInfo() {
+        const response = await api.get('/repos/ArthurFilho/GITHUB-Blog/issues')
+
+        setIssuesInformation(response.data)
+    }
 
     useEffect(()=>{
         informationLoad()
+
+        IssuesInfo()
     }, [])
 
     return(
@@ -60,15 +69,20 @@ export function ProfilePage(){
 
         <ContainerCards>
        
-        <Cards>
-        <ContainerText>
-            <div>JavaScript data types and data structures</div>
-            <a>Há 1 dia</a>
-        </ContainerText>
-    
-        <p>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in </p>
-        </Cards>
-
+        {IssuesInformation.map((info: any)=>{
+            return(
+            <Cards>
+            <ContainerText>
+                <div>{info.title}</div>
+                <a>{dataFormatter.format(new Date(info.created_at))}</a>
+            </ContainerText>
+        
+            <p>{info.body}</p>
+            </Cards>
+                )
+            }
+        )
+    } 
         </ContainerCards>
 
         </>

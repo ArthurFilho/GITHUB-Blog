@@ -70,6 +70,8 @@ export const Cards = styled.div`
         align-items: center;
         justify-content: center;
         opacity: 0.7;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 `
 
@@ -80,7 +82,7 @@ export const ContainerText = styled.div`
     a , a:link, a:visited, a:active, a:hover {
 	text-decoration: none;
     opacity: 0.5;
-    font-size: 14px;
+    font-size: 11px;
 	}
 `
 
