@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const ContainerProfile = styled.div`
@@ -55,7 +56,7 @@ export const ContainerCards = styled.div`
     flex-wrap: wrap;
 `
 
-export const Cards = styled.div`
+export const Cards = styled(NavLink)`
     display: flex;
     width: 400px;
     height: 180px;;
@@ -65,6 +66,7 @@ export const Cards = styled.div`
     flex-direction: column;
     border-radius: 10px;
     color: ${props => props.theme.white};
+    text-decoration: none;
     p {
         display: flex;
         align-items: center;
@@ -98,4 +100,9 @@ export const Links = styled.div`
     align-items: center;
     justify-content: center;
     gap: 10px;
+`
+
+export const ButtonIssues = styled.button`
+    background-color: ${props => props.theme["blue-1100"]};
+    border: none;
 `

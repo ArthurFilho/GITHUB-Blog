@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Header } from "../../components/Header";
 import { SearchForm } from "../../components/SearchForm";
 import { api } from "../../lib/axios";
-import { AllContainers, Cards, ContainerAvatar, ContainerCards, ContainerLinks, ContainerProfile, ContainerText, Description, Links, TitleAndLink } from "./styles";
+import { AllContainers, ButtonIssues, Cards, ContainerAvatar, ContainerCards, ContainerLinks, ContainerProfile, ContainerText, Description, Links, TitleAndLink } from "./styles";
 import click from "../../assets/ProfilePage/click.svg"
 import follow from "../../assets/ProfilePage/follow.svg"
 import github from "../../assets/ProfilePage/github.svg"
 import { dataFormatter } from "../../utils/formatter";
+import { IssuesPage } from "../IssuesPage";
 
   interface InformationInterface {
     name: string;
@@ -45,8 +45,6 @@ export function ProfilePage(){
 
     return(
         <>
-        <Header />
-        
         <AllContainers>
        
         <ContainerProfile>
@@ -71,14 +69,15 @@ export function ProfilePage(){
        
         {IssuesInformation.map((info: any)=>{
             return(
-            <Cards>
+            <ButtonIssues onClick={() => {IssuesPage(info)}}>
+            <Cards to='/issuespage'>
             <ContainerText>
                 <div>{info.title}</div>
                 <a>{dataFormatter.format(new Date(info.created_at))}</a>
             </ContainerText>
-        
             <p>{info.body}</p>
             </Cards>
+            </ButtonIssues>
                 )
             }
         )

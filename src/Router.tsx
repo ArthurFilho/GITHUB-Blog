@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { IssuesPage } from './Pages/IssuesPage'
 import { ProfilePage } from './Pages/ProfilePage'
 
 export function Router() {
@@ -6,6 +7,7 @@ export function Router() {
     <Routes>
       <Route >
       <Route path="/" element={<ProfilePage />} />
+      <Route path="/issuespage" element={<IssuesPage />} />
       </Route>
     </Routes>
   )
