@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SearchForm } from "../../components/SearchForm";
 import { api } from "../../lib/axios";
 import { AllContainers, ButtonIssues, Cards, ContainerAvatar, ContainerCards, ContainerLinks, ContainerProfile, ContainerText, Description, Links, TitleAndLink } from "./styles";
@@ -6,7 +6,7 @@ import click from "../../assets/ProfilePage/click.svg"
 import follow from "../../assets/ProfilePage/follow.svg"
 import github from "../../assets/ProfilePage/github.svg"
 import { dataFormatter } from "../../utils/formatter";
-import { IssuesPage } from "../IssuesPage";
+import { ContextContents } from "../../context/Context";
 
   interface InformationInterface {
     name: string;
@@ -21,9 +21,13 @@ import { IssuesPage } from "../IssuesPage";
 
 export function ProfilePage(){
 
+    const { IssuesPageLoad } = useContext(ContextContents)
+
     const [information, setInformation] = useState({} as InformationInterface)
 
     const [IssuesInformation, setIssuesInformation] = useState([] as any)
+
+    
 
     async function informationLoad() {
         const response = await api.get('/users/arthurfilho')
@@ -69,7 +73,7 @@ export function ProfilePage(){
        
         {IssuesInformation.map((info: any)=>{
             return(
-            <ButtonIssues onClick={() => {IssuesPage(info)}}>
+            <ButtonIssues onClick={() => {IssuesPageLoad(info.number)}}>
             <Cards to='/issuespage'>
             <ContainerText>
                 <div>{info.title}</div>
