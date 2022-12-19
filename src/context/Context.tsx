@@ -12,7 +12,6 @@ interface InformationInterface {
   followers: string
 }
 
-
 export const ContextContents = createContext({} as any)
 
 export function ContextProvider({children}: any) {
@@ -23,7 +22,13 @@ export function ContextProvider({children}: any) {
 
     const [IssuesInformation, setIssuesInformation] = useState([] as any)
 
-    
+    const [ IssuesDesc, setIssuesDesc] = useState({} as any)
+
+    async function Issues() {
+        const response = await api.get(`/repos/ArthurFilho/GITHUB-Blog/issues/${IssuesPageLoad}`)
+
+        setIssuesDesc(response.data)
+    }
 
     async function informationLoad() {
         const response = await api.get('/users/arthurfilho')
@@ -39,14 +44,14 @@ export function ContextProvider({children}: any) {
 
     useEffect(()=>{
         informationLoad()
-
+        Issues()
         IssuesInfo()
     }, [])
 
     function IssuesPageLoad(info:any) {
-      
+      setIssuesSelected(info)
     }
-  
+
       return (
           <ContextContents.Provider
             value={{
@@ -56,6 +61,7 @@ export function ContextProvider({children}: any) {
                 IssuesInfo,
                 information,
                 IssuesInformation,
+                IssuesDesc,
             }}
           >
             {children}

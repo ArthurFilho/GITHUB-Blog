@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { SearchForm } from "../../components/SearchForm";
-import { api } from "../../lib/axios";
 import { AllContainers, ButtonIssues, Cards, ContainerAvatar, ContainerCards, ContainerLinks, ContainerProfile, ContainerText, Description, Links, TitleAndLink } from "./styles";
 import click from "../../assets/ProfilePage/click.svg"
 import follow from "../../assets/ProfilePage/follow.svg"
@@ -8,16 +7,6 @@ import github from "../../assets/ProfilePage/github.svg"
 import { dataFormatter } from "../../utils/formatter";
 import { ContextContents } from "../../context/Context";
 
-  interface InformationInterface {
-    name: string;
-    bio: string
-    avatar_url: string
-    blog: string
-    html_url: string
-    login: string
-    company: string
-    followers: string
-}
 
 export function ProfilePage(){
 

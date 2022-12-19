@@ -6,11 +6,12 @@ import Back from "../../assets/issues/back.svg"
 import { ContainerIssues, Links , ContainerProfileIssues, ContainerLinks, Navigator, InfoGithub, ContainerIssuesDescription } from "./styles"
 import { useContext } from "react"
 import { ContextContents } from "../../context/Context"
+import { api } from "../../lib/axios"
 
 
 export function IssuesPage(){ 
 
-    const { IssuesPageLoad } = useContext(ContextContents)
+    const { IssuesDesc } = useContext(ContextContents)
 
     return(
         <ContainerIssues>
@@ -21,15 +22,15 @@ export function IssuesPage(){
             <Navigator to="/">
             <Links> <img src={Back} /> VOLTAR</Links>
             </Navigator>
-            <Links href={IssuesPageLoad.html_url}>github <img src={click} /></Links>
+            <Links href={IssuesDesc.html_url}>github <img src={click} /></Links>
             </ContainerLinks>
                 
-            <h1>{IssuesPageLoad.title}</h1>
+            <h1>{IssuesDesc.title}</h1>
             
             <div> 
-                { IssuesPageLoad.login == null ? '' : <InfoGithub> <img src={github} /> {IssuesPageLoad.login} </InfoGithub> } 
-                { IssuesPageLoad.company == null ? '' :  <InfoGithub> <img src={Date} /> {IssuesPageLoad.created_at} </InfoGithub> }
-                { IssuesPageLoad.comments == null ? '' : <InfoGithub> <img src={Comments} /> {IssuesPageLoad.comments} Comments </InfoGithub> }
+                { IssuesDesc.login == null ? '' : <InfoGithub> <img src={github} /> {IssuesDesc.login} </InfoGithub> } 
+                { IssuesDesc.company == null ? '' :  <InfoGithub> <img src={Date} /> {IssuesDesc.created_at} </InfoGithub> }
+                { IssuesDesc.comments == null ? '' : <InfoGithub> <img src={Comments} /> {IssuesDesc.comments} Comments </InfoGithub> }
             </div>
         
         </ContainerProfileIssues>
