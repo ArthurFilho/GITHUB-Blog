@@ -44,7 +44,7 @@ export function ContextProvider({children}: any) {
     }, [])
 
     function IssuesPageLoad(info:any) {
-        setIssuesSelected(info)
+      
     }
   
       return (

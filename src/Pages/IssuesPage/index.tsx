@@ -3,7 +3,7 @@ import github from "../../assets/ProfilePage/github.svg"
 import Comments from "../../assets/issues/comments.svg"
 import Date from "../../assets/issues/date.svg"
 import Back from "../../assets/issues/back.svg"
-import { ContainerIssues, Links , ContainerProfileIssues, ContainerLinks, Navigator } from "./styles"
+import { ContainerIssues, Links , ContainerProfileIssues, ContainerLinks, Navigator, InfoGithub, ContainerIssuesDescription } from "./styles"
 import { useContext } from "react"
 import { ContextContents } from "../../context/Context"
 
@@ -26,9 +26,16 @@ export function IssuesPage(){
                 
             <h1>{IssuesPageLoad.title}</h1>
             
-            <div> {IssuesPageLoad.login == null ? '' : <div> <img src={github} /> {IssuesPageLoad.login}</div>} {IssuesPageLoad.company == null ? '' :  <div> <img src={Date} /> {IssuesPageLoad.created_at}</div>} <div> <img src={Comments} /> {IssuesPageLoad.comments} Comments</div> </div>
+            <div> 
+                { IssuesPageLoad.login == null ? '' : <InfoGithub> <img src={github} /> {IssuesPageLoad.login} </InfoGithub> } 
+                { IssuesPageLoad.company == null ? '' :  <InfoGithub> <img src={Date} /> {IssuesPageLoad.created_at} </InfoGithub> }
+                { IssuesPageLoad.comments == null ? '' : <InfoGithub> <img src={Comments} /> {IssuesPageLoad.comments} Comments </InfoGithub> }
+            </div>
         
         </ContainerProfileIssues>
+
+        <ContainerIssuesDescription>eae</ContainerIssuesDescription>
+
         </ContainerIssues>
     )
 } 

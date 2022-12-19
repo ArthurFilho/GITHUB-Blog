@@ -46,3 +46,18 @@ export const Navigator = styled(NavLink)`
         color: ${props => props.theme["blue-100"]};
 	}
 `
+
+export const InfoGithub = styled.div`
+    text-decoration: none;
+    color: ${props => props.theme["gray-300"]};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+`
+
+export const ContainerIssuesDescription = styled.div`
+    margin-top: 300px;
+    position: absolute;
+    color: ${props => props.theme.white};
+`
