@@ -21,31 +21,9 @@ import { ContextContents } from "../../context/Context";
 
 export function ProfilePage(){
 
-    const { IssuesPageLoad } = useContext(ContextContents)
+    const { IssuesPageLoad, IssuesInformation, information,  } = useContext(ContextContents)
 
-    const [information, setInformation] = useState({} as InformationInterface)
-
-    const [IssuesInformation, setIssuesInformation] = useState([] as any)
-
-    
-
-    async function informationLoad() {
-        const response = await api.get('/users/arthurfilho')
-
-        setInformation(response.data)
-    }
-
-    async function IssuesInfo() {
-        const response = await api.get('/repos/ArthurFilho/GITHUB-Blog/issues')
-
-        setIssuesInformation(response.data)
-    }
-
-    useEffect(()=>{
-        informationLoad()
-
-        IssuesInfo()
-    }, [])
+   
 
     return(
         <>
