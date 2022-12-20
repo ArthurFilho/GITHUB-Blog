@@ -22,13 +22,6 @@ export function ContextProvider({children}: any) {
 
     const [IssuesInformation, setIssuesInformation] = useState([] as any)
 
-    const [ IssuesDesc, setIssuesDesc] = useState({} as any)
-
-    async function Issues() {
-        const response = await api.get(`/repos/ArthurFilho/GITHUB-Blog/issues/${IssuesPageLoad}`)
-
-        setIssuesDesc(response.data)
-    }
 
     async function informationLoad() {
         const response = await api.get('/users/arthurfilho')
@@ -42,15 +35,16 @@ export function ContextProvider({children}: any) {
         setIssuesInformation(response.data)
     }
 
-    useEffect(()=>{
-        informationLoad()
-        Issues()
-        IssuesInfo()
-    }, [])
-
     function IssuesPageLoad(info:any) {
       setIssuesSelected(info)
     }
+
+    useEffect(()=>{
+        informationLoad()
+        IssuesInfo()
+    }, [])
+
+    
 
       return (
           <ContextContents.Provider
@@ -61,7 +55,6 @@ export function ContextProvider({children}: any) {
                 IssuesInfo,
                 information,
                 IssuesInformation,
-                IssuesDesc,
             }}
           >
             {children}

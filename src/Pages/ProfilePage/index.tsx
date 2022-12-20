@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SearchForm } from "../../components/SearchForm";
 import { AllContainers, ButtonIssues, Cards, ContainerAvatar, ContainerCards, ContainerLinks, ContainerProfile, ContainerText, Description, Links, TitleAndLink } from "./styles";
 import click from "../../assets/ProfilePage/click.svg"
@@ -12,7 +12,6 @@ export function ProfilePage(){
 
     const { IssuesPageLoad, IssuesInformation, information,  } = useContext(ContextContents)
 
-   
 
     return(
         <>

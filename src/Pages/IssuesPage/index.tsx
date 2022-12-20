@@ -4,14 +4,26 @@ import Comments from "../../assets/issues/comments.svg"
 import Date from "../../assets/issues/date.svg"
 import Back from "../../assets/issues/back.svg"
 import { ContainerIssues, Links , ContainerProfileIssues, ContainerLinks, Navigator, InfoGithub, ContainerIssuesDescription } from "./styles"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ContextContents } from "../../context/Context"
 import { api } from "../../lib/axios"
 
 
 export function IssuesPage(){ 
 
-    const { IssuesDesc } = useContext(ContextContents)
+    const { IssuesSelected } = useContext(ContextContents)
+
+    const [ IssuesDesc, setIssuesDesc] = useState({} as any)
+
+    async function Issues() {
+        const response = await api.get(`repos/ArthurFilho/GITHUB-Blog/issues/${IssuesSelected}`)
+
+        setIssuesDesc(response.data)
+    }
+
+    useEffect(()=>{
+        Issues()
+    },[IssuesSelected])
 
     return(
         <ContainerIssues>
