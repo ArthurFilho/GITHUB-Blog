@@ -1,11 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { SearchForm } from "../../components/SearchForm";
 import { AllContainers, ButtonIssues, Cards, ContainerAvatar, ContainerCards, ContainerLinks, ContainerProfile, ContainerText, Description, Links, TitleAndLink } from "./styles";
 import click from "../../assets/ProfilePage/click.svg"
 import follow from "../../assets/ProfilePage/follow.svg"
 import github from "../../assets/ProfilePage/github.svg"
-import { dataFormatter } from "../../utils/formatter";
 import { ContextContents } from "../../context/Context";
+import { formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 
 
 export function ProfilePage(){
@@ -28,7 +29,11 @@ export function ProfilePage(){
             <a href={information.html_url}>github <img src={click} /></a>
             </TitleAndLink>
             <Description>{information.bio}</Description>
-            <ContainerLinks> {information.login == null ? '' : <Links> <img src={github} /> {information.login}</Links>} {information.company == null ? '' : <Links>{information.company}</Links>} <Links> <img src={follow} /> {information.followers} seguidores</Links> </ContainerLinks>
+            <ContainerLinks> 
+                {information.login == null ? '' : <Links> <img src={github} /> {information.login}</Links>} 
+                {information.company == null ? '' : <Links>{information.company}</Links>} 
+                <Links> <img src={follow} /> {information.followers} seguidores</Links> 
+            </ContainerLinks>
         </div>
         </ContainerProfile>
         
@@ -43,7 +48,10 @@ export function ProfilePage(){
             <Cards to='/issuespage'>
             <ContainerText>
                 <div>{info.title}</div>
-                <a>{dataFormatter.format(new Date(info.created_at))}</a>
+                <a>{formatDistanceToNow(new Date(info.created_at), {
+                      addSuffix: true,
+                      locale: ptBR,
+                    })}</a>
             </ContainerText>
             <p>{info.body}</p>
             </Cards>

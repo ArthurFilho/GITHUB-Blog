@@ -1,17 +1,21 @@
 import click from "../../assets/ProfilePage/click.svg"
 import github from "../../assets/ProfilePage/github.svg"
 import Comments from "../../assets/issues/comments.svg"
-import Date from "../../assets/issues/date.svg"
+import Dateimg from "../../assets/issues/date.svg"
 import Back from "../../assets/issues/back.svg"
-import { ContainerIssues, Links , ContainerProfileIssues, ContainerLinks, Navigator, InfoGithub, ContainerIssuesDescription } from "./styles"
+import { ContainerIssues, Links , ContainerProfileIssues, ContainerLinks, Navigator, InfoGithub, ContainerIssuesDescription, ContainerInfoGithub } from "./styles"
 import { useContext, useEffect, useState } from "react"
 import { ContextContents } from "../../context/Context"
 import { api } from "../../lib/axios"
 
+import { formatDistanceToNow } from "date-fns"
+import ptBR from "date-fns/locale/pt-BR"
+
+
 
 export function IssuesPage(){ 
 
-    const { IssuesSelected } = useContext(ContextContents)
+    const { IssuesSelected, information } = useContext(ContextContents)
 
     const [ IssuesDesc, setIssuesDesc] = useState({} as any)
 
@@ -34,20 +38,23 @@ export function IssuesPage(){
             <Navigator to="/">
             <Links> <img src={Back} /> VOLTAR</Links>
             </Navigator>
-            <Links href={IssuesDesc.html_url}>github <img src={click} /></Links>
+            <Links href={IssuesDesc.url}>VEJA NO GITHUB <img src={click} /></Links>
             </ContainerLinks>
                 
             <h1>{IssuesDesc.title}</h1>
             
-            <div> 
-                { IssuesDesc.login == null ? '' : <InfoGithub> <img src={github} /> {IssuesDesc.login} </InfoGithub> } 
-                { IssuesDesc.company == null ? '' :  <InfoGithub> <img src={Date} /> {IssuesDesc.created_at} </InfoGithub> }
+            <ContainerInfoGithub> 
+                { IssuesDesc.login == '' ? '' : <InfoGithub> <img src={github} /> {information.login} </InfoGithub> } 
+                { IssuesDesc.created_at == null ? '' :  <InfoGithub> <img src={Dateimg} /> {formatDistanceToNow(new Date(IssuesDesc.created_at), {
+                      addSuffix: true,
+                      locale: ptBR,
+                    })} </InfoGithub> }
                 { IssuesDesc.comments == null ? '' : <InfoGithub> <img src={Comments} /> {IssuesDesc.comments} Comments </InfoGithub> }
-            </div>
+            </ContainerInfoGithub>
         
         </ContainerProfileIssues>
 
-        <ContainerIssuesDescription>eae</ContainerIssuesDescription>
+        <ContainerIssuesDescription>{IssuesDesc.body}</ContainerIssuesDescription>
 
         </ContainerIssues>
     )

@@ -38,6 +38,10 @@ export const Links = styled.a`
     display: flex;
     align-items: center;
     gap: 5px;
+    color: ${props => props.theme["blue-100"]};
+    a:link, a:visited, a:active {
+        color: ${props => props.theme["blue-100"]};
+	}
 `
 
 export const Navigator = styled(NavLink)`
@@ -57,7 +61,16 @@ export const InfoGithub = styled.div`
 `
 
 export const ContainerIssuesDescription = styled.div`
-    margin-top: 300px;
-    position: absolute;
+    width: 500px;
+    height: 100%;
+    margin-top: 150px;
+    text-align: center;
+    align-items: center;
     color: ${props => props.theme.white};
+    text-overflow: ellipsis;
+`
+
+export const ContainerInfoGithub = styled.div`
+    display: flex;
+    gap: 10px;
 `

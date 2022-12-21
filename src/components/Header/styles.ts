@@ -6,5 +6,4 @@ export const ContainerHeader = styled.div`
     align-items: center;
     justify-content: center;
     display: flex;
-    
 `
