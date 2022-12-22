@@ -1,4 +1,4 @@
-import { ContainerHeader } from "./styles";
+import { ContainerHeader, ImgHeader } from "./styles";
 import Logo from "../../assets/ProfilePage/Logo.svg"
 import Background from "../../assets/ProfilePage/background.svg"
 
@@ -7,7 +7,7 @@ export function Header(){
         <>
         <ContainerHeader>
 
-        <img src={Background} />
+        <ImgHeader src={Background} />
 
         </ContainerHeader>
         </>

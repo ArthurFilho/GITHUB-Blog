@@ -5,5 +5,10 @@ export const ContainerHeader = styled.div`
     height: 200px;
     align-items: center;
     justify-content: center;
+    margin-bottom: 80px;
     display: flex;
+`
+
+export const ImgHeader = styled.img`
+    width: 100%;
 `

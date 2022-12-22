@@ -9,6 +9,7 @@ export const ContainerProfile = styled.div`
     width: 800px;
     height: 175px;
     position: absolute;
+    top: 150px;
     gap: 10px;
     background-color: ${props => props.theme["blue-950"]};
 `

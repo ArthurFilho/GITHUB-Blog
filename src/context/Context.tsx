@@ -22,6 +22,8 @@ export function ContextProvider({children}: any) {
 
     const [IssuesInformation, setIssuesInformation] = useState([] as any)
 
+    const [text, setText] = useState('issues')
+
 
     async function informationLoad() {
         const response = await api.get('/users/arthurfilho')
@@ -30,7 +32,7 @@ export function ContextProvider({children}: any) {
     }
 
     async function IssuesInfo() {
-        const response = await api.get('/repos/ArthurFilho/GITHUB-Blog/issues')
+        const response = await api.get(`search/q=${text}%20repo:arthurfilho}/GITHUB-Blog`)
 
         setIssuesInformation(response.data)
     }

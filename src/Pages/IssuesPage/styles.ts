@@ -30,6 +30,7 @@ export const ContainerProfileIssues = styled.div`
     width: 800px;
     height: 175px;
     position: absolute;
+    top: 150px;
     gap: 10px;
     background-color: ${props => props.theme["blue-950"]};
 `
@@ -61,13 +62,14 @@ export const InfoGithub = styled.div`
 `
 
 export const ContainerIssuesDescription = styled.div`
-    width: 500px;
+    width: 800px;
     height: 100%;
     margin-top: 150px;
     text-align: center;
     align-items: center;
-    color: ${props => props.theme.white};
     text-overflow: ellipsis;
+    margin-bottom: 100px;
+    color: ${props => props.theme.white};
 `
 
 export const ContainerInfoGithub = styled.div`

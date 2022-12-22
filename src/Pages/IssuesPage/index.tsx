@@ -10,7 +10,9 @@ import { api } from "../../lib/axios"
 
 import { formatDistanceToNow } from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
-
+import { ReactMarkdown } from "react-markdown/lib/react-markdown"
+import remarkGfm from "remark-gfm"
+import rehypeRaw from "rehype-raw"
 
 
 export function IssuesPage(){ 
@@ -38,7 +40,7 @@ export function IssuesPage(){
             <Navigator to="/">
             <Links> <img src={Back} /> VOLTAR</Links>
             </Navigator>
-            <Links href={IssuesDesc.url}>VEJA NO GITHUB <img src={click} /></Links>
+            <Links href={IssuesDesc.html_url}>VEJA NO GITHUB <img src={click} /></Links>
             </ContainerLinks>
                 
             <h1>{IssuesDesc.title}</h1>
@@ -54,7 +56,9 @@ export function IssuesPage(){
         
         </ContainerProfileIssues>
 
-        <ContainerIssuesDescription>{IssuesDesc.body}</ContainerIssuesDescription>
+        <ContainerIssuesDescription>
+            <ReactMarkdown children={IssuesDesc.body} rehypePlugins={[rehypeRaw]} />
+        </ContainerIssuesDescription>
 
         </ContainerIssues>
     )

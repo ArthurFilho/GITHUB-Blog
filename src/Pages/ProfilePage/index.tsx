@@ -51,7 +51,8 @@ export function ProfilePage(){
                 <a>{formatDistanceToNow(new Date(info.created_at), {
                       addSuffix: true,
                       locale: ptBR,
-                    })}</a>
+                    })}
+                </a>
             </ContainerText>
             <p>{info.body}</p>
             </Cards>
