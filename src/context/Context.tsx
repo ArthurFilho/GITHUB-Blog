@@ -22,7 +22,7 @@ export function ContextProvider({children}: any) {
 
     const [IssuesInformation, setIssuesInformation] = useState([] as any)
 
-    const [text, setText] = useState('issues')
+    const [text, setText] = useState('')
 
 
     async function informationLoad() {
@@ -32,7 +32,7 @@ export function ContextProvider({children}: any) {
     }
 
     async function IssuesInfo() {
-        const response = await api.get(`search/q=${text}%20repo:arthurfilho}/GITHUB-Blog`)
+        const response = await api.get(`/search/issues?q=${text}%20repo:ArthurFilho/GITHUB-Blog`)
 
         setIssuesInformation(response.data)
     }
@@ -57,6 +57,7 @@ export function ContextProvider({children}: any) {
                 IssuesInfo,
                 information,
                 IssuesInformation,
+                setText,
             }}
           >
             {children}

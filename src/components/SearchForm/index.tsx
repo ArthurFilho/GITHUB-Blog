@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ContextContents } from "../../context/Context";
 import { api } from "../../lib/axios";
 import { SearchFormContainer } from "./styles";
 
 export function SearchForm(){
+
+   const { setText } = useContext(ContextContents)
 
     const [issues, setIssues] = useState<any>({})
 
