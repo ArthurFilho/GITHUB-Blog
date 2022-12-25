@@ -20,10 +20,6 @@ export function ContextProvider({children}: any) {
 
     const [information, setInformation] = useState({} as InformationInterface)
 
-    const [IssuesInformation, setIssuesInformation] = useState([] as any)
-
-    const [text, setText] = useState('')
-
 
     async function informationLoad() {
         const response = await api.get('/users/arthurfilho')
@@ -31,11 +27,6 @@ export function ContextProvider({children}: any) {
         setInformation(response.data)
     }
 
-    async function IssuesInfo() {
-        const response = await api.get(`/search/issues?q=${text}%20repo:ArthurFilho/GITHUB-Blog`)
-
-        setIssuesInformation(response.data)
-    }
 
     function IssuesPageLoad(info:any) {
       setIssuesSelected(info)
@@ -43,10 +34,7 @@ export function ContextProvider({children}: any) {
 
     useEffect(()=>{
         informationLoad()
-        IssuesInfo()
     }, [])
-
-    
 
       return (
           <ContextContents.Provider
@@ -54,10 +42,7 @@ export function ContextProvider({children}: any) {
                 IssuesPageLoad,
                 IssuesSelected,
                 informationLoad,
-                IssuesInfo,
                 information,
-                IssuesInformation,
-                setText,
             }}
           >
             {children}

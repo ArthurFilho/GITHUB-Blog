@@ -1,17 +1,42 @@
-import { useContext } from "react";
-import { SearchForm } from "../../components/SearchForm";
-import { AllContainers, ButtonIssues, Cards, ContainerAvatar, ContainerCards, ContainerLinks, ContainerProfile, ContainerText, Description, Links, TitleAndLink } from "./styles";
+import { useContext, useEffect, useState } from "react";
+import { AllContainers, ButtonIssues, Cards, ContainerAvatar, ContainerCards, ContainerLinks, ContainerProfile, ContainerText, Description, Links, SearchFormContainer, TitleAndLink } from "./styles";
 import click from "../../assets/ProfilePage/click.svg"
 import follow from "../../assets/ProfilePage/follow.svg"
 import github from "../../assets/ProfilePage/github.svg"
 import { ContextContents } from "../../context/Context";
 import { formatDistanceToNow } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
+import { api } from "../../lib/axios";
 
 
 export function ProfilePage(){
+    
+    const { IssuesPageLoad, information} = useContext(ContextContents)
 
-    const { IssuesPageLoad, IssuesInformation, information,  } = useContext(ContextContents)
+    const [issues, setIssues] = useState<any>({})
+
+    const [IssuesInformation, setIssuesInformation] = useState([] as any)
+
+    const [text, setText] = useState('')
+
+ async function IssuesLoad() {
+     
+    const response = await api.get('/repos/arthurfilho/GITHUB-blog')
+
+     setIssues(response.data)
+ }
+
+ async function IssuesInfo() {
+    
+    const response = await api.get(`/search/issues?q=${text}%20repo:ArthurFilho/GITHUB-Blog`)
+
+    setIssuesInformation(response.data.items)
+}
+
+ useEffect(()=>{
+     IssuesLoad()
+     IssuesInfo()
+ }, [])
 
 
     return(
@@ -23,6 +48,7 @@ export function ProfilePage(){
         <ContainerAvatar>
             <img src={information.avatar_url} />
         </ContainerAvatar>
+        
         <div>
             <TitleAndLink>
             <h3>{information.name}</h3>
@@ -35,9 +61,24 @@ export function ProfilePage(){
                 <Links> <img src={follow} /> {information.followers} seguidores</Links> 
             </ContainerLinks>
         </div>
+        
         </ContainerProfile>
         
-           <SearchForm/>
+        <SearchFormContainer>
+        
+        <div>
+        <p>Publicações</p>
+        <p>{issues.open_issues_count} publicações</p>
+        </div>
+        <input
+        type="text"
+        placeholder="Buscar conteúdo"
+        
+        />    
+
+        </SearchFormContainer>  
+
+
         </AllContainers>
 
         <ContainerCards>

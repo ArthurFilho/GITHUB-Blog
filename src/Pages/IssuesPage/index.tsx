@@ -11,7 +11,6 @@ import { api } from "../../lib/axios"
 import { formatDistanceToNow } from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
-import remarkGfm from "remark-gfm"
 import rehypeRaw from "rehype-raw"
 
 
