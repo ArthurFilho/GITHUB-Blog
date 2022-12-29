@@ -17,27 +17,39 @@ export function ProfilePage(){
 
     const [IssuesInformation, setIssuesInformation] = useState([] as any)
 
-    const [text, setText] = useState('')
+    const [text, setText] = useState(``)
 
- async function IssuesLoad() {
-     
-    const response = await api.get('/repos/arthurfilho/GITHUB-blog')
 
-     setIssues(response.data)
- }
-
- async function IssuesInfo() {
+async function IssuesInfo() {
     
     const response = await api.get(`/search/issues?q=${text}%20repo:ArthurFilho/GITHUB-Blog`)
 
-    setIssuesInformation(response.data.items)
+        setIssuesInformation(response.data.items)
+}
+
+async function IssuesInfoC() {
+    
+    const response = await api.get(`/repos/arthurfilho/GITHUB-blog/issues`)
+
+        setIssuesInformation(response.data.items)
+}
+
+async function IssuesLoad() {
+    const response = await api.get('/repos/arthurfilho/GITHUB-blog')
+    setIssues(response.data)
 }
 
  useEffect(()=>{
-     IssuesLoad()
-     IssuesInfo()
- }, [])
-
+    IssuesLoad()
+    setTimeout(()=>{
+        { text == '' ? 
+    IssuesInfo()
+    :
+    IssuesInfoC()
+}
+    }, 1000)
+    
+}, [text])
 
     return(
         <>
@@ -73,17 +85,16 @@ export function ProfilePage(){
         <input
         type="text"
         placeholder="Buscar conteúdo"
-        
+        onChange={event => setText(event.target.value)}
         />    
 
         </SearchFormContainer>  
-
 
         </AllContainers>
 
         <ContainerCards>
        
-        {IssuesInformation.map((info: any)=>{
+        {IssuesInformation?.map((info: any)=>{
             return(
             <ButtonIssues onClick={() => {IssuesPageLoad(info.number)}}>
             <Cards to='/issuespage'>
