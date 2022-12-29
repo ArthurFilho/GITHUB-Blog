@@ -19,6 +19,8 @@ export function ProfilePage(){
 
     const [text, setText] = useState(``)
 
+    const [writing, setWriting] = useState()
+
 
 async function IssuesInfo() {
     
@@ -41,13 +43,16 @@ async function IssuesLoad() {
 
  useEffect(()=>{
     IssuesLoad()
-    setTimeout(()=>{
-        { text == '' ? 
-    IssuesInfo()
-    :
-    IssuesInfoC()
-}
-    }, 1000)
+    if (writing) {
+        const timeoutId = setTimeout(() => {
+     { text == '' ? 
+        IssuesInfo()
+        :
+        IssuesInfoC()
+    }
+        }, 1000)
+        return () => clearTimeout(timeoutId)
+    }
     
 }, [text])
 
