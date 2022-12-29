@@ -17,42 +17,39 @@ export function ProfilePage(){
 
     const [IssuesInformation, setIssuesInformation] = useState([] as any)
 
-    const [text, setText] = useState(``)
+    const [text, setText] = useState<any>(``)
 
-    const [writing, setWriting] = useState()
+    const [writing, setWriting] = useState<any>()
 
 
 async function IssuesInfo() {
     
-    const response = await api.get(`/search/issues?q=${text}%20repo:ArthurFilho/GITHUB-Blog`)
+    const response = await api.get(`search/issues?q=${text}%20repo:ArthurFilho/GITHUB-Blog`)
 
         setIssuesInformation(response.data.items)
 }
 
-async function IssuesInfoC() {
-    
-    const response = await api.get(`/repos/arthurfilho/GITHUB-blog/issues`)
-
-        setIssuesInformation(response.data.items)
-}
 
 async function IssuesLoad() {
     const response = await api.get('/repos/arthurfilho/GITHUB-blog')
     setIssues(response.data)
 }
 
+
  useEffect(()=>{
     IssuesLoad()
     if (writing) {
-        const timeoutId = setTimeout(() => {
-     { text == '' ? 
-        IssuesInfo()
-        :
-        IssuesInfoC()
+    clearTimeout(writing)
     }
-        }, 1000)
-        return () => clearTimeout(timeoutId)
-    }
+    const timeOutId = setTimeout(() => {
+        { text == '' ? 
+           IssuesInfo()
+           :
+           IssuesInfo()
+       }
+           }, 1000)
+
+    setWriting(timeOutId)
     
 }, [text])
 

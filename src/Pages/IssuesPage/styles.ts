@@ -62,7 +62,7 @@ export const InfoGithub = styled.div`
 `
 
 export const ContainerIssuesDescription = styled.div`
-    width: 800px;
+    width: 900px;
     height: 100%;
     margin-top: 150px;
     text-align: center;
