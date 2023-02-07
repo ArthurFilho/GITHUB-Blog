@@ -1,4 +1,4 @@
-<h1> Coffee Delivery </h1>
+<h1> GITHUB BLOG </h1>
 
 ![Screenshot_3](https://user-images.githubusercontent.com/96798145/208475189-e852abf1-11dc-4b3c-9ab9-a3a403825186.png)
 
